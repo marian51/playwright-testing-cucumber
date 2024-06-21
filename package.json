@@ -1,0 +1,11 @@
+{
+  "name": "playwright-testing-cucumber",
+  "version": "1.0.0",
+  "description": "Basic project for making automation test with both Playwright and Cucumber",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
