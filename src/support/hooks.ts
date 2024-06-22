@@ -2,6 +2,8 @@ import { After, Before, BeforeAll, setDefaultTimeout } from "@cucumber/cucumber"
 import { ChromiumBrowser, chromium, selectors } from "@playwright/test";
 import { MyWorld } from "../steps/playwright.steps";
 import { config } from "./config.ts";
+import dotenv from "dotenv";
+dotenv.config()
 
 let browser: ChromiumBrowser
 
