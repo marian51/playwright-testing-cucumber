@@ -1,5 +1,5 @@
 import { After, Before, BeforeAll } from "@cucumber/cucumber";
-import { ChromiumBrowser, chromium } from "@playwright/test";
+import { ChromiumBrowser, chromium, selectors } from "@playwright/test";
 import { MyWorld } from "../steps/playwright.steps";
 import { config } from "./config";
 
@@ -10,6 +10,7 @@ declare global {
 }
 
 BeforeAll(async function () {
+  selectors.setTestIdAttribute("data-test")
   browser = await chromium.launch(config.browserOptions)
 })
 
