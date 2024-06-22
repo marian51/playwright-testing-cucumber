@@ -1,7 +1,7 @@
-import { After, Before, BeforeAll } from "@cucumber/cucumber";
+import { After, Before, BeforeAll, setDefaultTimeout } from "@cucumber/cucumber";
 import { ChromiumBrowser, chromium, selectors } from "@playwright/test";
 import { MyWorld } from "../steps/playwright.steps";
-import { config } from "./config";
+import { config } from "./config.ts";
 
 let browser: ChromiumBrowser
 
@@ -9,13 +9,17 @@ declare global {
   var browser: ChromiumBrowser
 }
 
+setDefaultTimeout(1000 * 3000)
+
 BeforeAll(async function () {
   selectors.setTestIdAttribute("data-test")
-  browser = await chromium.launch(config.browserOptions)
 })
 
 Before(async function (this: MyWorld) {
-  this.page = await (await browser.newContext()).newPage()
+  browser = await chromium.launch(config.browserOptions)
+  const context = await browser.newContext()
+  context.setDefaultTimeout(1000 * 60)
+  this.page = await context.newPage()
 })
 
 After(async () => {
