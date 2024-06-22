@@ -3,9 +3,16 @@
   "version": "1.0.0",
   "description": "Basic project for making automation test with both Playwright and Cucumber",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@cucumber/cucumber": "^10.8.0",
+    "@playwright/test": "^1.44.1",
+    "@types/node": "^20.14.7",
+    "ts-node": "^10.9.2"
+  }
 }
