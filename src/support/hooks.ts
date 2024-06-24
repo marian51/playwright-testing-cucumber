@@ -12,7 +12,7 @@ declare global {
   var browser: ChromiumBrowser
 }
 
-setDefaultTimeout(1000 * 3000)
+setDefaultTimeout(1000 * 60)
 
 BeforeAll(async function () {
   selectors.setTestIdAttribute("data-test")
@@ -23,6 +23,11 @@ Before(async function (this: MyWorld) {
   const context = await browser.newContext()
   context.setDefaultTimeout(1000 * 60)
   this.page = await context.newPage()
+})
+
+Before({tags: "@delete"}, async function (this: MyWorld) {
+  const request = this.page.request
+  await ApiHelpers.postSpaceByName(request, "GUI new space") // FIXME remove plain text
 })
 
 After(async () => {
