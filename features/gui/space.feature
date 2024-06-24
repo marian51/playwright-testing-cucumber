@@ -17,3 +17,16 @@ Feature: UI tests for checking basic space functionalities
     Examples:
       | new space name |
       | GUI new space  |
+
+  @delete
+  Scenario Outline: User deletes existing space
+    Given A space with name "<new space name>" is open
+    When User clicks by "right" click on "<new space name>" in left side menu
+    And User choose "Delete" option from space context menu
+    And User types "<new space name>" in space name input in 'Delete space' modal window
+    And User clicks "Delete" button on 'Delete space' modal window
+    Then Element with "<new space name>" name is not displayed on lef side menu
+
+    Examples:
+      | new space name |
+      | GUI new space  |
