@@ -2,7 +2,8 @@ import { Given, Then, World } from "@cucumber/cucumber";
 import { Page, expect } from "@playwright/test";
 
 export interface MyWorld extends World {
-  page: Page
+  page: Page,
+  [key: string]: string | any
 }
 
 Given('Go to the main website', async function (this: MyWorld) {

@@ -6,6 +6,7 @@ Feature: UI tests for checking basic space functionalities
     When User logs with correct credentials
     Then User is logged to the application
 
+  @create
   Scenario Outline: User creates new space
     Given A "Create Space" modal window is open
     When User types "<new space name>" in new space input
