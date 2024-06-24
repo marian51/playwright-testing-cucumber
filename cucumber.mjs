@@ -1,4 +1,5 @@
 export default {
   loader: ["ts-node/esm"],
-  import: ["src/**/*.ts"]
+  import: ["src/**/*.ts"],
+  forceExit: true
 }
