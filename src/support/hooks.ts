@@ -3,6 +3,7 @@ import { ChromiumBrowser, chromium, selectors } from "@playwright/test";
 import { MyWorld } from "../steps/playwright.steps";
 import { config } from "./config.ts";
 import dotenv from "dotenv";
+import { ApiHelpers } from "./ApiHelpers.ts";
 dotenv.config()
 
 let browser: ChromiumBrowser
@@ -27,3 +28,8 @@ Before(async function (this: MyWorld) {
 After(async () => {
   await browser.close();
 });
+
+After({tags: "@create"}, async function(this: MyWorld) {
+  const request = this.page.request
+  await ApiHelpers.deleteSpaceByName(request, this.newSpaceName)
+})

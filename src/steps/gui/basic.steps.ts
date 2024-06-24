@@ -32,6 +32,7 @@ Given("A {string} modal window is open", async function (this: MyWorld, s: strin
 
 When("User types {string} in new space input", async function (this: MyWorld, newSpaceName: string) {
   await createSpaceModal.typeIntoNameInput(newSpaceName);
+  this.newSpaceName = newSpaceName
 });
 
 When("User clicks {string} button in new space modal window", async function (this: MyWorld, buttonName: string) {
