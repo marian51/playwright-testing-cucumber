@@ -27,9 +27,8 @@ Given("A {string} modal window is open", async function (this: MyWorld, s: strin
 });
 
 Given("A space with name {string} is open", async function (this: MyWorld, spaceName: string) {
-  leftSideMenu = leftSideMenu ?? new LeftSideMenu(this.page);
+  leftSideMenu = new LeftSideMenu(this.page);
   await leftSideMenu.clickOnElement(spaceName);
-  console.log("A space with name {string} is open")
 });
 
 When("User logs with correct credentials", async () => {
@@ -40,13 +39,11 @@ When("User logs with correct credentials", async () => {
 
 When("User clicks by {string} click on {string} in left side menu", async function (this: MyWorld, mouseKey: string, elementName: string) {
   await leftSideMenu.clickOnElement(elementName, mouseKey);
-  console.log("User clicks by {string} click on {string} in left side menu")
 });
 
 When("User choose {string} option from space context menu", async function (this: MyWorld, menuOption: string) {
   spaceContextMenu = spaceContextMenu ?? new SpaceContextMenu(this.page);
   await spaceContextMenu.clickOnOption(menuOption);
-  console.log("User choose {string} option from space context menu")
 });
 
 When("User types {string} in space name input in 'Delete space' modal window", async function (this: MyWorld, spaceName: string) {
