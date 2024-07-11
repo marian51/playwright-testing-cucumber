@@ -1,4 +1,4 @@
-@gui @space
+@gui @space @all
 Feature: UI tests for checking basic space functionalities
 
   Background: User is logged to the application

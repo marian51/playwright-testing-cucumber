@@ -1,3 +1,4 @@
+@all
 Feature: Basic Cucumber test
 
   Background: Navigation
