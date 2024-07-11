@@ -1,7 +1,9 @@
 import { LaunchOptions } from "@playwright/test";
 
+const isHeadless = Boolean(process.env.CI)
+
 const browserOptions: LaunchOptions = {
-  headless: false
+  headless: isHeadless ?? false
 };
 
 export const config = {
