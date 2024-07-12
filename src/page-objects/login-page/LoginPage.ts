@@ -23,6 +23,8 @@ export default class LoginPage extends BasePage {
 
   async typeIntoLoginInput(text: string) {
     await this.page.screenshot({path: "playwright-report/2.png"})
+    console.log("here")
+    console.log("login = " + process.env.TEST_PASSWORD)
     await this.loginEmailInput.fill(text);
   }
 
