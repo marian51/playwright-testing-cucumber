@@ -5,6 +5,7 @@ Feature: UI tests for checking basic space functionalities
     Given Login page is open
     When User logs with correct credentials
     Then User is logged to the application
+    And Application is ready to test
 
   @create
   Scenario Outline: User creates new space

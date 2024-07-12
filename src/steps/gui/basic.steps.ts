@@ -6,6 +6,7 @@ import { LeftSideMenu } from "../../page-objects/main-view/LeftSideMenu.ts";
 import { CreateSpaceModal } from "../../page-objects/modals/CreateSpaceModal.ts";
 import { SpaceContextMenu } from "../../page-objects/context-menus/SpaceContextMenu.ts";
 import { DeleteSpaceModal } from "../../page-objects/modals/DeleteSpaceModal.ts";
+import { waitAndCloseSearchPopup, waitForPageLoad } from "../../support/GuiHelpers.ts";
 
 let loginPage: LoginPage,
   leftSideMenu: LeftSideMenu,
@@ -74,4 +75,9 @@ Then("New space with {string} name is displayed on left side menu", async functi
 
 Then("Element with {string} name is not displayed on lef side menu", async function (this: MyWorld, elementName: string) {
   await leftSideMenu.assertElementIsNotVisible(elementName);
+});
+
+Then("Application is ready to test", async function (this: MyWorld) {
+  await waitForPageLoad(this.page);
+  await waitAndCloseSearchPopup(this.page);
 });
