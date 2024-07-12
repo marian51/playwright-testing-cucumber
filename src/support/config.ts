@@ -1,4 +1,7 @@
 import { LaunchOptions } from "@playwright/test";
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const isHeadless = Boolean(process.env.CI)
 

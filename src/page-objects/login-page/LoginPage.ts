@@ -18,9 +18,11 @@ export default class LoginPage extends BasePage {
   async goToLoginPage() {
     await this.page.goto("https://app.clickup.com/");
     await this.mainContainer.waitFor();
+    await this.page.screenshot({path: "playwright-report/1.png"})
   }
 
   async typeIntoLoginInput(text: string) {
+    await this.page.screenshot({path: "playwright-report/2.png"})
     await this.loginEmailInput.fill(text);
   }
 
