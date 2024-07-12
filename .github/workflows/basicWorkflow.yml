@@ -13,8 +13,8 @@ on:
         default: "@all"
 
 env:
-  TEST_USERNAME: ${{ secrets.USER_NAME }}
-  TEST_PASSWORD: ${{ secrets.PASSWORD }}
+  TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
+  TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
   API_KEY: ${{ secrets.API_KEY }}
   BASE_TEAM_ID: ${{ secrets.BASE_TEAM_ID }}
 
