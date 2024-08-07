@@ -15,4 +15,8 @@ export abstract class BasePage {
   async assertPageUrlIsCorrect(expectedUrl: string | RegExp) {
     await expect(this.page).toHaveURL(expectedUrl, {timeout: 1000 * 10});
   }
+
+  async clickKeyboardKey(key: string) {
+    await this.container.press(key)
+  }
 }
