@@ -32,6 +32,11 @@ Given("A space with name {string} is open", async function (this: MyWorld, space
   await leftSideMenu.clickOnElement(spaceName);
 });
 
+Given('Application is opened', async function (this: MyWorld) {
+  await this.page.goto("https://app.clickup.com/")
+  loginPage = new LoginPage(this.page);
+})
+
 When("User logs with correct credentials", async () => {
   await loginPage.typeIntoLoginInput(process.env.TEST_USERNAME as string);
   await loginPage.typeIntoPasswordInput(process.env.TEST_PASSWORD as string);

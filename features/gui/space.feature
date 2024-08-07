@@ -2,8 +2,9 @@
 Feature: UI tests for checking basic space functionalities
 
   Background: User is logged to the application
-    Given Login page is open
-    When User logs with correct credentials
+    Given Application is opened
+    # Given Login page is open
+    # When User logs with correct credentials
     Then User is logged to the application
     And Application is ready to test
 
