@@ -20,12 +20,12 @@ BeforeAll(async function () {
 
 Before(async function (this: MyWorld) {
   browser = await chromium.launch(config.browserOptions)
-  const context = await browser.newContext()
+  const context = await browser.newContext({storageState: 'session-storage.json'})
   context.setDefaultTimeout(1000 * 60)
   this.page = await context.newPage()
 })
 
-Before({tags: "@delete"}, async function (this: MyWorld) {
+Before({tags: "@delete and @space"}, async function (this: MyWorld) {
   const request = this.page.request
   await ApiHelpers.postSpaceByName(request, "GUI new space") // FIXME remove plain text
 })
@@ -34,7 +34,7 @@ After(async () => {
   await browser.close();
 });
 
-After({tags: "@create"}, async function(this: MyWorld) {
+After({tags: "@create and @space"}, async function(this: MyWorld) {
   const request = this.page.request
   await ApiHelpers.deleteSpaceByName(request, this.newSpaceName)
 })
