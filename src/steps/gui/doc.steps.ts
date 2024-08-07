@@ -22,14 +22,18 @@ Given("A new doc is created in basic space", async function (this: MyWorld) {
 })
 
 When("Basic space for tests is created", async function (this: MyWorld) {
-  const request = this.page.request
-  await ApiHelpers.postSpaceByName(request, "GUI new space") // FIXME remove plain text
+  const basicSpaceName: string = "GUI new space";
+  const request = this.page.request;
+  await ApiHelpers.postSpaceByName(request, basicSpaceName)
+  this.newSpaceName = basicSpaceName
 })
 
 When("User saves new doc with {string} name", async function (this: MyWorld, newDocName: string) {
   docPage = new DocPage(this.page);
   docPage.typeIntoTitleInput(newDocName);
-  docPage.clickKeyboardKey("Enter")
+  docPage.clickKeyboardKey("Enter");
+
+  this.newDocName = newDocName;
 })
 
 Then("New doc with {string} name is displayed on left side menu", async function (this: MyWorld, newDocName: string) {

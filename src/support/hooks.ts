@@ -34,7 +34,11 @@ After(async () => {
   await browser.close();
 });
 
-After({tags: "@create and @space"}, async function(this: MyWorld) {
+After({tags: "@create and @doc"}, async function (this: MyWorld) {
+  await ApiHelpers.deleteDocsByName(this.page.request, this.newDocName);
+})
+
+After({tags: "@create and (@space or @doc)"}, async function(this: MyWorld) {
   const request = this.page.request
   await ApiHelpers.deleteSpaceByName(request, this.newSpaceName)
 })

@@ -34,4 +34,23 @@ export class ApiHelpers {
 
     await request.post(postSpaceEndpoint, { headers: { Authorization: apiKey }, data: newSpaceBody });
   }
+
+  public static async deleteDocsByName(request: APIRequestContext, docsName: string) {
+    const apiToken: string = (await request.storageState()).origins[0].localStorage.filter(e => e.name === "id_token")[0].value;
+    const endpoint: string = "https://prod-eu-west-1-3.clickup.com/viz/v1/view";
+
+    await request.delete(endpoint, { headers: { Authorization: `Bearer ${apiToken}` }, data: { viewIds: (await this.getDocsIds(request, docsName))} })
+  }
+
+  public static async getDocsIds(request: APIRequestContext, docName: string) {
+    const apiKey: string = process.env.API_KEY as string;
+    const teamId: string = process.env.BASE_TEAM_ID as string;
+    const getAllDocsEndpoint: string = `https://api.clickup.com/api/v3/workspaces/${teamId}/docs`;
+
+    const getAllDocs: APIResponse = await request.get(getAllDocsEndpoint, { headers: { Authorization: apiKey } });
+    const docsArray = (await getAllDocs.json()).docs.filter((doc: { name: string; }) => doc.name === docName);
+    const docsId: string[] = docsArray.map((doc: { id: any; }) => doc.id)
+
+    return docsId;
+  }
 }
