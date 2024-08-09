@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@cucumber/cucumber": "^10.8.0",
+    "@cucumber/cucumber": "8.4.0",
     "@playwright/test": "^1.44.1",
     "@types/node": "^20.14.7",
     "dotenv": "^16.4.5",
