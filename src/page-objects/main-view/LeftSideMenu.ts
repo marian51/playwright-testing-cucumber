@@ -11,6 +11,10 @@ export class LeftSideMenu extends BasePage {
     await this.container.getByRole("treeitem", { name: elementName }).click({ button: mouseKey });
   }
 
+  async clickOnMenuLabel(labelName: string, mouseKey: string = "left") {
+    await this.container.getByTestId("simple-bar__item-label").filter({ hasText: labelName }).click({ button: mouseKey });
+  } 
+
   async assertElementIsVisible(elementName: string) {
     const element = this.container.getByRole("treeitem", { name: elementName });
     await expect(element).toBeVisible();
