@@ -16,3 +16,15 @@ Feature: UI tests for checking basic doc functionalities
     Examples:
       | new doc name |
       | Example doc  |
+
+  @delete @steps
+  Scenario Outline: User deletes existing doc
+    Given A doc with "<example_doc>" name exists in basic space
+    When User clicks on "<example_doc>" element on left menu by "right" mouse button
+    And User choose "Delete" option in doc context menu
+    Then Doc with "<example_doc>" is not displayed on left side menu
+    And Doc with "<example_doc>" is not listed in docs list
+
+    Examples:
+      | example_doc |
+      | Example doc |

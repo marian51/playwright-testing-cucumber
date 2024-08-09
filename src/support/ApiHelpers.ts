@@ -35,6 +35,25 @@ export class ApiHelpers {
     await request.post(postSpaceEndpoint, { headers: { Authorization: apiKey }, data: newSpaceBody });
   }
 
+  public static async postDocByName(request: APIRequestContext, spaceName: string, docName: string) {
+    const apiToken: string = await this.getApiToken(request);
+    const endpoint: string = "https://prod-eu-west-1-3.clickup.com/docs/v1/view"
+
+    const requestBody = {
+      name: docName,
+      parent: {
+        id: await this.getSpaceIdByName(request, spaceName),
+        type: 4
+      },
+      workspace_id: process.env.BASE_TEAM_ID,
+      type: 9,
+      sidebar_view: "true"
+    }
+
+    const resposne = await request.post(endpoint, { headers: { Authorization: `Bearer ${apiToken}` }, data: requestBody });
+    console.log(await resposne.json())
+  }
+
   public static async deleteDocsByName(request: APIRequestContext, docsName: string) {
     const apiToken: string = (await request.storageState()).origins[0].localStorage.filter(e => e.name === "id_token")[0].value;
     const endpoint: string = "https://prod-eu-west-1-3.clickup.com/viz/v1/view";
@@ -52,5 +71,9 @@ export class ApiHelpers {
     const docsId: string[] = docsArray.map((doc: { id: any; }) => doc.id)
 
     return docsId;
+  }
+
+  private static async getApiToken(request: APIRequestContext): Promise<string> {
+    return (await request.storageState()).origins[0].localStorage.filter(e => e.name === "id_token")[0].value;
   }
 }
