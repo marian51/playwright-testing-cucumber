@@ -1,10 +1,10 @@
 import { Given, Then, When } from "@cucumber/cucumber";
 import { LeftSideMenu } from "../../page-objects/main-view/LeftSideMenu.ts";
 import { MyWorld } from "../playwright.steps.ts";
-import { ApiHelpers } from "../../support/ApiHelpers.ts";
 import { SpaceContextMenu } from "../../page-objects/context-menus/SpaceContextMenu.ts";
 import { SpaceCreateNewContextMenu } from "../../page-objects/context-menus/SpaceCreateNewContextMenu.ts";
 import { DocPage } from "../../page-objects/doc-page/DocPage.ts";
+import { ApiHelpers } from "../../../support/ApiHelpers.ts";
 
 let leftSideMenu: LeftSideMenu,
     spaceContextMenu: SpaceContextMenu,
