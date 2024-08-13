@@ -6,7 +6,7 @@ import { LeftSideMenu } from "../../page-objects/main-view/LeftSideMenu.ts";
 import { CreateSpaceModal } from "../../page-objects/modals/CreateSpaceModal.ts";
 import { SpaceContextMenu } from "../../page-objects/context-menus/SpaceContextMenu.ts";
 import { DeleteSpaceModal } from "../../page-objects/modals/DeleteSpaceModal.ts";
-import { waitAndCloseSearchPopup, waitForPageLoad } from "../../support/GuiHelpers.ts";
+import { waitAndCloseSearchPopup, waitForPageLoad } from "../../../support/GuiHelpers.ts";
 
 let loginPage: LoginPage,
   leftSideMenu: LeftSideMenu,
