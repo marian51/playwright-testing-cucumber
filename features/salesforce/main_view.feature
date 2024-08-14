@@ -1,6 +1,6 @@
+@sf
 Feature: Basic scenarios for testing main view of application
 
-  @run-this
   Scenario: Checking if all tabs are displayed
     Given Salesforce application is opened
     And User is logged to the Salesforce application

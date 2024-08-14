@@ -1,4 +1,5 @@
-import { LaunchOptions } from "@playwright/test";
+import { World } from "@cucumber/cucumber";
+import { LaunchOptions, Page } from "@playwright/test";
 import dotenv from 'dotenv'
 
 dotenv.config()
@@ -14,3 +15,8 @@ export const config = {
   browserOptions,
   BASE_URL: 'https://playwright.dev',
 };
+
+export interface MyWorld extends World {
+  page: Page,
+  [key: string]: string | any
+}

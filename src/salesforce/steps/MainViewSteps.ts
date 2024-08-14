@@ -1,6 +1,6 @@
 import { Then, When } from "@cucumber/cucumber";
 import { MainView } from "../page-objects/main-view/MainView.ts";
-import { MyWorld } from "../../clickup/steps/playwright.steps.ts";
+import { MyWorld } from "../../support/config.ts";
 
 let mainView: MainView;
 

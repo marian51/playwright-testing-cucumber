@@ -1,7 +1,6 @@
 import { After, Before, BeforeAll, setDefaultTimeout } from "@cucumber/cucumber";
 import { ChromiumBrowser, chromium, selectors } from "@playwright/test";
-import { MyWorld } from "../steps/playwright.steps";
-import { config } from "./config.ts";
+import { config, MyWorld } from "./config.ts";
 import dotenv from "dotenv";
 import { ApiHelpers } from "./ApiHelpers.ts";
 dotenv.config()
