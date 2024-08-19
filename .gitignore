@@ -1,5 +1,6 @@
 node_modules
 playwright-report
+videos
 
 package-lock.json
 .env

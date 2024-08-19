@@ -19,8 +19,10 @@ BeforeAll(async function () {
 
 Before(async function (this: MyWorld) {
   browser = await chromium.launch(config.browserOptions)
-  const context = await browser.newContext({storageState: 'session-storage.json'})
-  context.setDefaultTimeout(1000 * 60)
+  // const context = await browser.newContext({storageState: 'session-storage.json'})
+  const videos = process.env.SF_RECORD_VIDEOS === "true" ? { dir: "videos/", size: {height: 800, width: 1600} } : undefined
+  const context = await browser.newContext({ recordVideo: videos})
+  context.setDefaultTimeout(1000 * 600)
   this.page = await context.newPage()
 })
 
