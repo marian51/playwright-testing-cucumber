@@ -45,4 +45,14 @@ export class CaseDetails extends BasePage {
       await target.evaluate((element) => (element.style.backgroundColor = "yellow"));
     }
   }
+
+  async assertStatusIsAsExpected(statusName: string) {
+    const label = this.page.getByText("Status", { exact: true });
+    const parent = this.page.locator("dt", { has: label }).locator("xpath=..");
+    const target = parent.locator("dd").locator("lightning-formatted-text");
+
+    await expect(target).toHaveText(statusName);
+    await target.evaluate((element) => (element.style.backgroundColor = "yellow"));
+    await expect(this.page.getByTitle('In Progress').locator("xpath=..")).toHaveCSS("background-color", "rgb(1, 68, 134)")
+  }
 }

@@ -37,3 +37,16 @@ Feature: Scenarios for tests of delegations
     Then Delegation window opens
     And Delegation details are as expected
 
+  @approve_delegation
+  Scenario: Checking that approving existing delegation works correct
+    Given Salesforce application is opened
+    And User is logged to the Salesforce application
+    And User is on "Cases" tab
+    And There is at least one existing delegation with "Needs Manager Approval" status
+    When User opens delegation with "Needs Manager Approval" status
+    And User clicks on "Approve" button in delegation view
+    And User provides comment in dialog window
+    And User clicks on "Approve" button in dialog window
+    Then Delegation is in "In Progress" Status
+    And Buttons "Approve; Reject" are not displayed
+
