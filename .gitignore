@@ -1,6 +1,8 @@
 node_modules
 playwright-report
 videos
+.vscode
 
 package-lock.json
 .env
+session-storage.json
