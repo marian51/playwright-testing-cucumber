@@ -1,8 +1,16 @@
-import { Then, When } from "@cucumber/cucumber";
+import { Given, Then, When } from "@cucumber/cucumber";
 import { MainView } from "../page-objects/main-view/MainView.ts";
 import { MyWorld } from "../../support/config.ts";
 
 let mainView: MainView;
+
+Given("User is on {string} tab", async function (this: MyWorld, tabName: string) {
+  mainView = new MainView(this.page);
+
+  await mainView.waitForWidgetsSection();
+  await mainView.clickOnTab(tabName);
+  await mainView.checkThatTabIsOpened(tabName);
+})
 
 When("Main view of Salesforce application is loaded", async function (this: MyWorld) {
   mainView = new MainView(this.page);
