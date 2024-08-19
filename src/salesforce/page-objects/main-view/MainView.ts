@@ -32,6 +32,14 @@ export class MainView extends BasePage {
     await element.click();
   }
 
+  async checkThatTabIsOpened(tabName: string) {
+    try {
+      await this.tabName.getByText(tabName).waitFor({ timeout: 5000 })
+    } catch (error) {
+      throw new Error(`'${tabName}' tab has not been loaded!`)
+    }
+  }
+
   async assertNavigationTabsAreVisible(table: any, lookAtDropdown: boolean) {
     this.navigationTabLocator = lookAtDropdown ? "one-app-nav-bar-menu-item" : "one-app-nav-bar-item-root";
     for (const element of table) {

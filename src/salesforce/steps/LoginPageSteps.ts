@@ -11,7 +11,7 @@ Given('Salesforce application is opened', async function (this: MyWorld) {
   await loginPage.waitForLogo();
 })
 
-Given('User is logged to the Salesforce application', async function (this: MyWorld)  {
+Given(/^User is logged to the Salesforce application$/, async function (this: MyWorld)  {
   await loginPage.typeIntoUsernameInput(process.env.SF_TEST_USERNAME as string);
   await loginPage.typeIntoPasswordInput(process.env.SF_TEST_PASSWORD as string);
   await loginPage.clickOnButton("Log In to Sandbox");
