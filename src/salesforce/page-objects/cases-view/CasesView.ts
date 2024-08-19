@@ -12,7 +12,7 @@ export class CasesView extends BasePage {
   }
 
   async openDelegationWithStatus(statusName: string) {
-    await this.casesTable.locator("tbody").getByRole('gridcell', { name: statusName }).locator("xpath=..").locator("th").click();
+    await this.casesTable.locator("tbody").getByRole('gridcell', { name: statusName }).locator("xpath=..").locator("th").first().click();
   }
 
   async checkThatThereIsCaseWithStatus(statusName: string) {
