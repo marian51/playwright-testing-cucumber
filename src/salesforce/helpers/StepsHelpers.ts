@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config()
+
 export const DELEGATION_FORM = {
   TEXT_FIELDS: [
     "Subject",
@@ -28,3 +31,22 @@ export const DELEGATION_FORM = {
     "Traveler"
   ]
 };
+
+export const COST_FORM = {
+  TEXT_FIELDS: [
+    "Business Trip Cost Name",
+    "Amount"
+  ],
+
+  DROPDOWN_SELECT: [
+    "Type",
+    "Paid By"
+  ]
+}
+
+export const USERS: {[key: string]: {USERNAME: string; PASSWORD: string}} = {
+  administrative: {
+    USERNAME: process.env.SF_TEST_OFFICE_USERNAME as string,
+    PASSWORD: process.env.SF_TEST_OFFICE_PASSWORD as string
+  }
+}

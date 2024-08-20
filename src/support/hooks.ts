@@ -22,7 +22,7 @@ Before(async function (this: MyWorld) {
   // const context = await browser.newContext({storageState: 'session-storage.json'})
   const videos = process.env.SF_RECORD_VIDEOS === "true" ? { dir: "videos/", size: {height: 800, width: 1600} } : undefined
   const context = await browser.newContext({ recordVideo: videos})
-  context.setDefaultTimeout(1000 * 600)
+  context.setDefaultTimeout(1000 * 60)
   this.page = await context.newPage()
 })
 
