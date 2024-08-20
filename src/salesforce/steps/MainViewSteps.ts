@@ -18,7 +18,7 @@ When("Main view of Salesforce application is loaded", async function (this: MyWo
   await mainView.waitForWidgetsSection();
 });
 
-When('User clicks on {string} tab', async function (this: MyWorld, tabName: string) {
+When(/^User clicks on "(\w+)" tab$/, async function (this: MyWorld, tabName: string) {
   await mainView.clickOnTab(tabName);
 })
 

@@ -2,18 +2,25 @@ import { Locator, Page, expect } from "@playwright/test";
 
 export abstract class BasePage {
   readonly page: Page;
-  container: any | Locator;
+  container: Locator;
   
   constructor(page: Page) {
     this.page = page;
+    this.container = this.page.locator("body")
   }
   
   async clickOnButton(buttonName: string, exactText?: boolean) {
-    await this.container.getByRole("button", { name: buttonName, exact: exactText ?? false }).click();
+    const button = this.container.getByRole("button", { name: buttonName, exact: exactText ?? false });
+    await button.scrollIntoViewIfNeeded();
+    await button.click();
   }
 
   async scrollToHeading(headingName: string) {
     await this.page.getByRole("heading", { name: headingName }).scrollIntoViewIfNeeded();
+  }
+
+  async waitForStopProcessing() {
+    await this.container.locator("lightning-spinner").waitFor({ state: "hidden", timeout: 7000 })
   }
 
   getButtonByName(buttonName: string): Locator {

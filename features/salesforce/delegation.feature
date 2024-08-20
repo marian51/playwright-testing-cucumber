@@ -50,3 +50,41 @@ Feature: Scenarios for tests of delegations
     Then Delegation is in "In Progress" Status
     And Buttons "Approve; Reject" are not displayed
 
+  @settle_delegation
+  Scenario: Checking that settling approved delegation works correct
+    Given Salesforce application is opened
+    And User is logged to the Salesforce application as "administrative" user
+    And User is on "Cases" tab
+    And There is "All Open Cases" selected view
+    And View is filtered by "In progress"
+    When User opens 1 delegation
+    And User clicks on "Waiting For Invoice" status in statuses bar
+    And User clicks on "Mark as Current Status" button in delegation view
+    And User saves value from "Mileage Allowance Amount" field
+    And User clicks on "Settlement" tab in delegation view
+    And User adds new entry in "Business Trip Costs" section
+    And User selects "Other" record type
+    And User clicks "Next" button in New Cost dialog
+    And User provides cost information in "Information" section as below
+      | Field                   | Value             |
+      | Business Trip Cost Name | Transport cost    |
+      | Type                    | Mileage Allowance |
+      | Paid By                 | Sandbox_Company   |
+      | Amount                  | copied_value      |
+    And User clicks on "Save" button in New Cost dialog
+    And New cost is added to delegation
+    And User clicks on "Calculate Settlement" button in delegation view
+    And User clicks on "Yes" button in confirmation Settlement dialog
+    And User clicks on "Settle Employee" button in delegation view
+    And User clicks on "Settle Employee" button in confirmation Settlement dialog
+    And User clicks on "Settle Project" button in delegation view
+    And User clicks on "Settle Project" button in confirmation Settlement dialog
+    And Delegation view is not processing
+    Then The relevant fields have corresponding values
+      | Field                            | Value                   |
+      | Employee Settled                 | checked                 |
+      | Project Settled                  | checked                 |
+      | Status Of Calcs For The Employee | Calculated With Success |
+      | Status Of Calcs On The Project   | Calculated With Success |
+    And Status in statuses bar is set to "Closed"
+    And Costs are distributed according to the project setting
